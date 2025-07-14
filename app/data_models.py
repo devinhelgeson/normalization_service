@@ -25,6 +25,7 @@ class JobRoleSuggestion(BaseModel):
 class JobRoleSuggestionsResponse(BaseModel):
     suggestions: list[JobRoleSuggestion]
 
+
 # ==== Ingestion Validation Model ====
 class RawOccupationRecord(BaseModel):
     code: str = Field(..., alias="Code")
@@ -42,7 +43,7 @@ class RawOccupationRecord(BaseModel):
     def is_valid(self) -> bool:
         return self.data_level == "Y" and self.job_zone is not None
 
-    
+
 class JobRole(BaseModel):
     uuid: uuid.UUID
     title: str

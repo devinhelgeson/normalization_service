@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Query
-from typing import Optional
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
@@ -41,15 +40,14 @@ async def get_suggestions(
     query_embedding = model.encode(q)
     query_embedding = (query_embedding / np.linalg.norm(query_embedding)).tolist()
 
-
     # Query DB for similar titles
     results = query_similar_titles(query_embedding, top_k=limit)
 
     # Filter by threshold and format results
     suggestions = [
-        JobRoleSuggestion(id=row["uuid"], name=row["title"], score = row["score"])
+        JobRoleSuggestion(id=row["uuid"], name=row["title"], score=row["score"])
         for row in results
-        # if (row["score"]) >= threshold
+        if (row["score"]) >= threshold
     ]
 
     return JobRoleSuggestionsResponse(suggestions=suggestions)
