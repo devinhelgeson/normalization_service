@@ -1,0 +1,862 @@
+{
+  "experiment_name": "all-MiniLM-L6-v2_threshold70",
+  "description": "Using a generic all-MiniLM-L6-v2 embedding model with a cosine similarity threshold of 0.7.",
+  "timestamp": "20250714_103541",
+  "metrics": {
+    "eval_samples": 141,
+    "true_positives": 73,
+    "false_positives": 15,
+    "false_negatives": 53,
+    "precision": 0.8295454545454546,
+    "recall": 0.5793650793650794,
+    "f1_score": 0.6822429906542056
+  },
+  "results": [
+    {
+      "input_title": "software dev",
+      "expected": "Software Developers",
+      "predicted": "Software Developers",
+      "correct": true
+    },
+    {
+      "input_title": "java programmer",
+      "expected": "Computer Programmers",
+      "predicted": "Computer Programmers",
+      "correct": true
+    },
+    {
+      "input_title": "data scientist",
+      "expected": "Data Scientists",
+      "predicted": "Data Scientists",
+      "correct": true
+    },
+    {
+      "input_title": "cybersecurity analyst",
+      "expected": "Information Security Analysts",
+      "predicted": "Information Security Analysts",
+      "correct": true
+    },
+    {
+      "input_title": "mechanical engineer",
+      "expected": "Mechanical Engineers",
+      "predicted": "Mechanical Engineers",
+      "correct": true
+    },
+    {
+      "input_title": "civil eng",
+      "expected": "Civil Engineers",
+      "predicted": "Civil Engineers",
+      "correct": true
+    },
+    {
+      "input_title": "electrical engineer",
+      "expected": "Electrical Engineers",
+      "predicted": "Electrical Engineers",
+      "correct": true
+    },
+    {
+      "input_title": "lab tech",
+      "expected": "Medical and Clinical Lab Technicians",
+      "predicted": "Medical and Clinical Laboratory Technicians",
+      "correct": false
+    },
+    {
+      "input_title": "research assistant",
+      "expected": "Medical Assistants",
+      "predicted": "Medical Assistants",
+      "correct": true
+    },
+    {
+      "input_title": "registered nurse",
+      "expected": "Registered Nurses",
+      "predicted": "Registered Nurses",
+      "correct": true
+    },
+    {
+      "input_title": "rn",
+      "expected": "Registered Nurses",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "family doctor",
+      "expected": "Family Medicine Physicians",
+      "predicted": "Family Medicine Physicians",
+      "correct": true
+    },
+    {
+      "input_title": "surgeon",
+      "expected": "Surgeons",
+      "predicted": "Pediatric Surgeons",
+      "correct": false
+    },
+    {
+      "input_title": "pharmacist",
+      "expected": "Pharmacists",
+      "predicted": "Pharmacists",
+      "correct": true
+    },
+    {
+      "input_title": "dental hygienist",
+      "expected": "Dental Hygienists",
+      "predicted": "Dental Hygienists",
+      "correct": true
+    },
+    {
+      "input_title": "vet tech",
+      "expected": "Veterinary Technologists and Technicians",
+      "predicted": "Veterinary Technologists and Technicians",
+      "correct": true
+    },
+    {
+      "input_title": "cna",
+      "expected": "Nursing Assistants",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "school nurse",
+      "expected": "Registered Nurses",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "school counselor",
+      "expected": "Educational, Guidance, and Career Counselors and Advisors",
+      "predicted": "School Psychologists",
+      "correct": false
+    },
+    {
+      "input_title": "guidance counselor",
+      "expected": "Educational, Guidance, and Career Counselors and Advisors",
+      "predicted": "Educational, Guidance, and Career Counselors and Advisors",
+      "correct": true
+    },
+    {
+      "input_title": "math teacher",
+      "expected": "Secondary School Teachers, Except Special and Career/Technical Education",
+      "predicted": "Mathematical Science Teachers, Postsecondary",
+      "correct": false
+    },
+    {
+      "input_title": "history teacher",
+      "expected": "History Teachers, Postsecondary",
+      "predicted": "History Teachers, Postsecondary",
+      "correct": true
+    },
+    {
+      "input_title": "elementary teacher",
+      "expected": "Elementary School Teachers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "special ed teacher",
+      "expected": "Special Education Teachers",
+      "predicted": "Special Education Teachers, Elementary School",
+      "correct": false
+    },
+    {
+      "input_title": "tutor",
+      "expected": "Tutors",
+      "predicted": "Tutors",
+      "correct": true
+    },
+    {
+      "input_title": "preschool teacher",
+      "expected": "Preschool Teachers",
+      "predicted": "Preschool Teachers, Except Special Education",
+      "correct": false
+    },
+    {
+      "input_title": "college professor",
+      "expected": "Postsecondary Teachers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "adjunct professor",
+      "expected": "Postsecondary Teachers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "academic advisor",
+      "expected": "Educational, Guidance, and Career Counselors and Advisors",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "financial analyst",
+      "expected": "Financial Analysts",
+      "predicted": "Financial and Investment Analysts",
+      "correct": false
+    },
+    {
+      "input_title": "accountant",
+      "expected": "Accountants and Auditors",
+      "predicted": "Accountants and Auditors",
+      "correct": true
+    },
+    {
+      "input_title": "bookkeeper",
+      "expected": "Bookkeeping, Accounting, and Auditing Clerks",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "auditor",
+      "expected": "Accountants and Auditors",
+      "predicted": "Accountants and Auditors",
+      "correct": true
+    },
+    {
+      "input_title": "tax preparer",
+      "expected": "Tax Preparers",
+      "predicted": "Tax Preparers",
+      "correct": true
+    },
+    {
+      "input_title": "investment banker",
+      "expected": "Securities, Commodities, and Financial Services Sales Agents",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "loan officer",
+      "expected": "Loan Officers",
+      "predicted": "Loan Officers",
+      "correct": true
+    },
+    {
+      "input_title": "bank teller",
+      "expected": "Tellers",
+      "predicted": "Tellers",
+      "correct": true
+    },
+    {
+      "input_title": "hr manager",
+      "expected": "Human Resources Managers",
+      "predicted": "Human Resources Managers",
+      "correct": true
+    },
+    {
+      "input_title": "recruiter",
+      "expected": "Human Resources Specialists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "payroll clerk",
+      "expected": "Payroll and Timekeeping Clerks",
+      "predicted": "Payroll and Timekeeping Clerks",
+      "correct": true
+    },
+    {
+      "input_title": "marketing manager",
+      "expected": "Marketing Managers",
+      "predicted": "Marketing Managers",
+      "correct": true
+    },
+    {
+      "input_title": "brand strategist",
+      "expected": "Market Research Analysts and Marketing Specialists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "social media manager",
+      "expected": "Public Relations Specialists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "content writer",
+      "expected": "Writers and Authors",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "copywriter",
+      "expected": "Writers and Authors",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "editor",
+      "expected": "Editors",
+      "predicted": "Editors",
+      "correct": true
+    },
+    {
+      "input_title": "journalist",
+      "expected": "News Analysts, Reporters, and Journalists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "publicist",
+      "expected": "Public Relations Specialists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "communications manager",
+      "expected": "Public Relations Managers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "graphic designer",
+      "expected": "Graphic Designers",
+      "predicted": "Graphic Designers",
+      "correct": true
+    },
+    {
+      "input_title": "illustrator",
+      "expected": "Fine Artists, Including Painters, Sculptors, and Illustrators",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "photographer",
+      "expected": "Photographers",
+      "predicted": "Photographers",
+      "correct": true
+    },
+    {
+      "input_title": "film editor",
+      "expected": "Film and Video Editors",
+      "predicted": "Film and Video Editors",
+      "correct": true
+    },
+    {
+      "input_title": "video producer",
+      "expected": "Producers and Directors",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "sound technician",
+      "expected": "Sound Engineering Technicians",
+      "predicted": "Sound Engineering Technicians",
+      "correct": true
+    },
+    {
+      "input_title": "actor",
+      "expected": "Actors",
+      "predicted": "Actors",
+      "correct": true
+    },
+    {
+      "input_title": "musician",
+      "expected": "Musicians and Singers",
+      "predicted": "Musicians and Singers",
+      "correct": true
+    },
+    {
+      "input_title": "makeup artist",
+      "expected": "Makeup Artists, Theatrical and Performance",
+      "predicted": "Makeup Artists, Theatrical and Performance",
+      "correct": true
+    },
+    {
+      "input_title": "set designer",
+      "expected": "Set and Exhibit Designers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "interior decorator",
+      "expected": "Interior Designers",
+      "predicted": "Interior Designers",
+      "correct": true
+    },
+    {
+      "input_title": "fashion designer",
+      "expected": "Fashion Designers",
+      "predicted": "Fashion Designers",
+      "correct": true
+    },
+    {
+      "input_title": "retail clerk",
+      "expected": "Retail Salespersons",
+      "predicted": "Retail Salespersons",
+      "correct": true
+    },
+    {
+      "input_title": "store manager",
+      "expected": "General and Operations Managers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "cashier",
+      "expected": "Cashiers",
+      "predicted": "Cashiers",
+      "correct": true
+    },
+    {
+      "input_title": "barista",
+      "expected": "Baristas",
+      "predicted": "Baristas",
+      "correct": true
+    },
+    {
+      "input_title": "hostess",
+      "expected": "Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "waiter",
+      "expected": "Waiters and Waitresses",
+      "predicted": "Waiters and Waitresses",
+      "correct": true
+    },
+    {
+      "input_title": "chef",
+      "expected": "Chefs and Head Cooks",
+      "predicted": "Cooks, Restaurant",
+      "correct": false
+    },
+    {
+      "input_title": "line cook",
+      "expected": "Cooks, Restaurant",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "prep cook",
+      "expected": "Cooks, Institution and Cafeteria",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "busser",
+      "expected": "Dining Room and Cafeteria Attendants and Bartender Helpers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "bartender",
+      "expected": "Bartenders",
+      "predicted": "Bartenders",
+      "correct": true
+    },
+    {
+      "input_title": "janitor",
+      "expected": "Janitors and Cleaners, Except Maids and Housekeepers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "housekeeper",
+      "expected": "Maids and Housekeeping Cleaners",
+      "predicted": "Maids and Housekeeping Cleaners",
+      "correct": true
+    },
+    {
+      "input_title": "custodian",
+      "expected": "Janitors and Cleaners",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "maintenance worker",
+      "expected": "Maintenance and Repair Workers, General",
+      "predicted": "Maintenance Workers, Machinery",
+      "correct": false
+    },
+    {
+      "input_title": "electrician",
+      "expected": "Electricians",
+      "predicted": "Electricians",
+      "correct": true
+    },
+    {
+      "input_title": "plumber",
+      "expected": "Plumbers, Pipefitters, and Steamfitters",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "hvac tech",
+      "expected": "Heating, Air Conditioning, and Refrigeration Mechanics and Installers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "construction laborer",
+      "expected": "Construction Laborers",
+      "predicted": "Construction Laborers",
+      "correct": true
+    },
+    {
+      "input_title": "carpenter",
+      "expected": "Carpenters",
+      "predicted": "Carpenters",
+      "correct": true
+    },
+    {
+      "input_title": "roofer",
+      "expected": "Roofers",
+      "predicted": "Roofers",
+      "correct": true
+    },
+    {
+      "input_title": "welder",
+      "expected": "Welders, Cutters, Solderers, and Brazers",
+      "predicted": "Welders, Cutters, Solderers, and Brazers",
+      "correct": true
+    },
+    {
+      "input_title": "machinist",
+      "expected": "Machinists",
+      "predicted": "Machinists",
+      "correct": true
+    },
+    {
+      "input_title": "truck driver",
+      "expected": "Light Truck Drivers",
+      "predicted": "Light Truck Drivers",
+      "correct": true
+    },
+    {
+      "input_title": "delivery driver",
+      "expected": "Light Truck Drivers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "rideshare driver",
+      "expected": "Taxi Drivers and Chauffeurs",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "school bus driver",
+      "expected": "Bus Drivers, School",
+      "predicted": "Bus Drivers, School",
+      "correct": true
+    },
+    {
+      "input_title": "pilot",
+      "expected": "Commercial Pilots",
+      "predicted": "Commercial Pilots",
+      "correct": true
+    },
+    {
+      "input_title": "flight attendant",
+      "expected": "Flight Attendants",
+      "predicted": "Flight Attendants",
+      "correct": true
+    },
+    {
+      "input_title": "air traffic controller",
+      "expected": "Air Traffic Controllers",
+      "predicted": "Air Traffic Controllers",
+      "correct": true
+    },
+    {
+      "input_title": "postal worker",
+      "expected": "Postal Service Clerks",
+      "predicted": "Postal Service Clerks",
+      "correct": true
+    },
+    {
+      "input_title": "mail sorter",
+      "expected": "Postal Service Mail Sorters, Processors, and Processing Machine Operators",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "dispatcher",
+      "expected": "Dispatchers, Except Police, Fire, and Ambulance",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "security guard",
+      "expected": "Security Guards",
+      "predicted": "Security Guards",
+      "correct": true
+    },
+    {
+      "input_title": "police officer",
+      "expected": "Police and Sheriff's Patrol Officers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "firefighter",
+      "expected": "Firefighters",
+      "predicted": "Firefighters",
+      "correct": true
+    },
+    {
+      "input_title": "paramedic",
+      "expected": "Paramedics",
+      "predicted": "Paramedics",
+      "correct": true
+    },
+    {
+      "input_title": "emt",
+      "expected": "Emergency Medical Technicians",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "911 operator",
+      "expected": "Public Safety Telecommunicators",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "court clerk",
+      "expected": "Court Clerks",
+      "predicted": "Judicial Law Clerks",
+      "correct": false
+    },
+    {
+      "input_title": "paralegal",
+      "expected": "Paralegals and Legal Assistants",
+      "predicted": "Paralegals and Legal Assistants",
+      "correct": true
+    },
+    {
+      "input_title": "legal secretary",
+      "expected": "Legal Secretaries and Administrative Assistants",
+      "predicted": "Legal Secretaries and Administrative Assistants",
+      "correct": true
+    },
+    {
+      "input_title": "attorney",
+      "expected": "Lawyers",
+      "predicted": "Lawyers",
+      "correct": true
+    },
+    {
+      "input_title": "judge",
+      "expected": "Judges, Magistrate Judges, and Magistrates",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "environmental scientist",
+      "expected": "Environmental Scientists and Specialists, Including Health",
+      "predicted": "Environmental Scientists and Specialists, Including Health",
+      "correct": true
+    },
+    {
+      "input_title": "wildlife biologist",
+      "expected": "Zoologists and Wildlife Biologists",
+      "predicted": "Zoologists and Wildlife Biologists",
+      "correct": true
+    },
+    {
+      "input_title": "park ranger",
+      "expected": "Forest and Conservation Technicians",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "zookeeper",
+      "expected": "Animal Caretakers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "dog groomer",
+      "expected": "Animal Caretakers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "vet assistant",
+      "expected": "Veterinary Assistants and Laboratory Animal Caretakers",
+      "predicted": "Veterinarians",
+      "correct": false
+    },
+    {
+      "input_title": "childcare worker",
+      "expected": "Childcare Workers",
+      "predicted": "Childcare Workers",
+      "correct": true
+    },
+    {
+      "input_title": "nanny",
+      "expected": "Childcare Workers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "daycare assistant",
+      "expected": "Teaching Assistants, Preschool, Elementary, Middle, and Secondary School, Except Special Education",
+      "predicted": "Education and Childcare Administrators, Preschool and Daycare",
+      "correct": false
+    },
+    {
+      "input_title": "library assistant",
+      "expected": "Library Assistants, Clerical",
+      "predicted": "Library Assistants, Clerical",
+      "correct": true
+    },
+    {
+      "input_title": "librarian",
+      "expected": "Librarians and Media Collections Specialists",
+      "predicted": "Library Technicians",
+      "correct": false
+    },
+    {
+      "input_title": "museum curator",
+      "expected": "Curators",
+      "predicted": "Curators",
+      "correct": true
+    },
+    {
+      "input_title": "tour guide",
+      "expected": "Tour and Travel Guides",
+      "predicted": "Travel Guides",
+      "correct": false
+    },
+    {
+      "input_title": "travel agent",
+      "expected": "Travel Agents",
+      "predicted": "Travel Agents",
+      "correct": true
+    },
+    {
+      "input_title": "event planner",
+      "expected": "Meeting, Convention, and Event Planners",
+      "predicted": "Meeting, Convention, and Event Planners",
+      "correct": true
+    },
+    {
+      "input_title": "wedding planner",
+      "expected": "Meeting, Convention, and Event Planners",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "real estate agent",
+      "expected": "Real Estate Sales Agents",
+      "predicted": "Real Estate Sales Agents",
+      "correct": true
+    },
+    {
+      "input_title": "property manager",
+      "expected": "Property, Real Estate, and Community Association Managers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "insurance agent",
+      "expected": "Insurance Sales Agents",
+      "predicted": "Insurance Sales Agents",
+      "correct": true
+    },
+    {
+      "input_title": "claims adjuster",
+      "expected": "Claims Adjusters, Examiners, and Investigators",
+      "predicted": "Claims Adjusters, Examiners, and Investigators",
+      "correct": true
+    },
+    {
+      "input_title": "mortgage broker",
+      "expected": "Loan Officers",
+      "predicted": "Real Estate Brokers",
+      "correct": false
+    },
+    {
+      "input_title": "personal trainer",
+      "expected": "Athletic Trainers",
+      "predicted": "Athletic Trainers",
+      "correct": true
+    },
+    {
+      "input_title": "yoga instructor",
+      "expected": "Exercise Trainers and Group Fitness Instructors",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "massage therapist",
+      "expected": "Massage Therapists",
+      "predicted": "Massage Therapists",
+      "correct": true
+    },
+    {
+      "input_title": "esthetician",
+      "expected": "Skincare Specialists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "hair stylist",
+      "expected": "Hairdressers, Hairstylists, and Cosmetologists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "nail tech",
+      "expected": "Manicurists and Pedicurists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "barber",
+      "expected": "Barbers",
+      "predicted": "Barbers",
+      "correct": true
+    },
+    {
+      "input_title": "tattoo artist",
+      "expected": "Craft Artists",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "blacksmith",
+      "expected": "Metal Workers and Plastic Workers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "glassblower",
+      "expected": "Glass Blowers, Molders, Benders, and Finishers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "florist",
+      "expected": "Floral Designers",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "baker",
+      "expected": "Bakers",
+      "predicted": "Bakers",
+      "correct": true
+    },
+    {
+      "input_title": "pastry chef",
+      "expected": "Chefs and Head Cooks",
+      "predicted": null,
+      "correct": false
+    },
+    {
+      "input_title": "butcher",
+      "expected": "Butchers and Meat Cutters",
+      "predicted": "Butchers and Meat Cutters",
+      "correct": true
+    },
+    {
+      "input_title": "brewer",
+      "expected": "Food and Tobacco Roasting, Baking, and Drying Machine Operators",
+      "predicted": null,
+      "correct": false
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+input_title,expected_title,predicted_title
+lab tech,Medical and Clinical Lab Technicians,Medical and Clinical Laboratory Technicians
+rn,Registered Nurses,
+surgeon,Surgeons,Pediatric Surgeons
+cna,Nursing Assistants,
+school nurse,Registered Nurses,
+school counselor,"Educational, Guidance, and Career Counselors and Advisors",School Psychologists
+math teacher,"Secondary School Teachers, Except Special and Career/Technical Education","Mathematical Science Teachers, Postsecondary"
+elementary teacher,Elementary School Teachers,
+special ed teacher,Special Education Teachers,"Special Education Teachers, Elementary School"
+preschool teacher,Preschool Teachers,"Preschool Teachers, Except Special Education"
+college professor,Postsecondary Teachers,
+adjunct professor,Postsecondary Teachers,
+academic advisor,"Educational, Guidance, and Career Counselors and Advisors",
+financial analyst,Financial Analysts,Financial and Investment Analysts
+bookkeeper,"Bookkeeping, Accounting, and Auditing Clerks",
+investment banker,"Securities, Commodities, and Financial Services Sales Agents",
+recruiter,Human Resources Specialists,
+brand strategist,Market Research Analysts and Marketing Specialists,
+social media manager,Public Relations Specialists,
+content writer,Writers and Authors,
+copywriter,Writers and Authors,
+journalist,"News Analysts, Reporters, and Journalists",
+publicist,Public Relations Specialists,
+communications manager,Public Relations Managers,
+illustrator,"Fine Artists, Including Painters, Sculptors, and Illustrators",
+video producer,Producers and Directors,
+set designer,Set and Exhibit Designers,
+store manager,General and Operations Managers,
+hostess,"Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop",
+chef,Chefs and Head Cooks,"Cooks, Restaurant"
+line cook,"Cooks, Restaurant",
+prep cook,"Cooks, Institution and Cafeteria",
+busser,Dining Room and Cafeteria Attendants and Bartender Helpers,
+janitor,"Janitors and Cleaners, Except Maids and Housekeepers",
+custodian,Janitors and Cleaners,
+maintenance worker,"Maintenance and Repair Workers, General","Maintenance Workers, Machinery"
+plumber,"Plumbers, Pipefitters, and Steamfitters",
+hvac tech,"Heating, Air Conditioning, and Refrigeration Mechanics and Installers",
+delivery driver,Light Truck Drivers,
+rideshare driver,Taxi Drivers and Chauffeurs,
+mail sorter,"Postal Service Mail Sorters, Processors, and Processing Machine Operators",
+dispatcher,"Dispatchers, Except Police, Fire, and Ambulance",
+police officer,Police and Sheriff's Patrol Officers,
+emt,Emergency Medical Technicians,
+911 operator,Public Safety Telecommunicators,
+court clerk,Court Clerks,Judicial Law Clerks
+judge,"Judges, Magistrate Judges, and Magistrates",
+park ranger,Forest and Conservation Technicians,
+zookeeper,Animal Caretakers,
+dog groomer,Animal Caretakers,
+vet assistant,Veterinary Assistants and Laboratory Animal Caretakers,Veterinarians
+nanny,Childcare Workers,
+daycare assistant,"Teaching Assistants, Preschool, Elementary, Middle, and Secondary School, Except Special Education","Education and Childcare Administrators, Preschool and Daycare"
+librarian,Librarians and Media Collections Specialists,Library Technicians
+tour guide,Tour and Travel Guides,Travel Guides
+wedding planner,"Meeting, Convention, and Event Planners",
+property manager,"Property, Real Estate, and Community Association Managers",
+mortgage broker,Loan Officers,Real Estate Brokers
+yoga instructor,Exercise Trainers and Group Fitness Instructors,
+esthetician,Skincare Specialists,
+hair stylist,"Hairdressers, Hairstylists, and Cosmetologists",
+nail tech,Manicurists and Pedicurists,
+tattoo artist,Craft Artists,
+blacksmith,Metal Workers and Plastic Workers,
+glassblower,"Glass Blowers, Molders, Benders, and Finishers",
+florist,Floral Designers,
+pastry chef,Chefs and Head Cooks,
+brewer,"Food and Tobacco Roasting, Baking, and Drying Machine Operators",
