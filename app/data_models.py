@@ -1,32 +1,66 @@
-from typing import Optional
+from typing import List, Optional
 import uuid
 from pydantic import BaseModel, Field, field_validator
 
+# JobTitleEmbeddingMatch
 
-class JobRoleSuggestionRequest(BaseModel):
+class JobTitleEmbeddingMatchRequest(BaseModel):
     q: str
     limit: Optional[int] = Field(
         default=10, description="The upper limit of results to be returned"
     )
-    threshold: Optional[float] = Field(
+    embedding_score_threshold: Optional[float] = Field(
         default=0.7,
         ge=0.0,
         le=1.0,
         description="Similarity score threshold. Between 0 and 1.",
     )
 
-
-class JobRoleSuggestion(BaseModel):
+class JobTitleEmbeddingMatch(BaseModel):
     id: uuid.UUID
     name: str
-    score: float
+    embedding_score: float
 
+class JobTitleEmbeddingMatchResponse(BaseModel):
+    matches: list[JobTitleEmbeddingMatch]
 
-class JobRoleSuggestionsResponse(BaseModel):
-    suggestions: list[JobRoleSuggestion]
+# JobTitleEmbeddingFuzzyMatch
 
+class JobTitleEmbeddingFuzzyMatchRequest(JobTitleEmbeddingMatchRequest):
+    embedding_score_weight: Optional[float] = Field(
+        default=0.7,
+        ge=0.0,
+        le=1.0,
+        description="Similarity score threshold. Between 0 and 1.",
+    )
+    fuzzy_score_weight: Optional[float] = Field(
+        default=0.3,
+        ge=0.0,
+        le=1.0,
+        description="Similarity score threshold. Between 0 and 1.",
+    )
 
-# ==== Ingestion Validation Model ====
+class JobTitleEmbeddingFuzzyMatch(JobTitleEmbeddingMatch):
+    fuzzy_score: float
+    final_score: float
+
+class JobTitleEmbeddingFuzzyMatchResponse(BaseModel):
+    matches: List[JobTitleEmbeddingFuzzyMatch]
+
+# JobTitleCascadeMatch
+
+class JobTitleCascadeMatchRequest(JobTitleEmbeddingFuzzyMatchRequest):
+    fuzzy_candidates: Optional[int] = Field(
+        default=100, description="The number of initial fuzzy match search results"
+    )
+
+class JobTitleCascadeMatch(JobTitleEmbeddingFuzzyMatch):
+    pass
+
+class JobTitleCascadeMatchResponse(JobTitleEmbeddingFuzzyMatchResponse):
+    matches: List[JobTitleCascadeMatch]
+
+# Ingestion Validation
 class RawOccupationRecord(BaseModel):
     code: str = Field(..., alias="Code")
     title: str = Field(..., alias="Occupation")
@@ -44,9 +78,9 @@ class RawOccupationRecord(BaseModel):
         return self.data_level == "Y" and self.job_zone is not None
 
 
-class JobRole(BaseModel):
-    uuid: uuid.UUID
-    title: str
-    code: Optional[str]
-    job_zone: Optional[int]
-    embedding: Optional[list[float]] = None
+# class JobTitle(BaseModel):
+#     uuid: uuid.UUID
+#     title: str
+#     code: Optional[str]
+#     job_zone: Optional[int]
+#     embedding: Optional[list[float]] = None

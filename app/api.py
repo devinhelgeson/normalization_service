@@ -2,11 +2,16 @@ from fastapi import APIRouter, Query
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-from app.db import query_similar_titles
+from app.job_title_match import job_title_embedding_match, job_title_embedding_fuzzy_match, job_title_cascade_match
 from app.data_models import (
-    JobRoleSuggestionRequest,
-    JobRoleSuggestionsResponse,
-    JobRoleSuggestion,
+    JobTitleEmbeddingMatchRequest,
+    JobTitleEmbeddingMatchResponse,
+
+    JobTitleEmbeddingFuzzyMatchRequest,
+    JobTitleEmbeddingFuzzyMatchResponse,
+
+    JobTitleCascadeMatchRequest,
+    JobTitleCascadeMatchResponse
 )
 
 router = APIRouter()
@@ -16,8 +21,8 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
 @router.get(
-    "/suggestions",
-    response_model=JobRoleSuggestionsResponse,
+    "/match/embedding",
+    response_model=JobTitleEmbeddingMatchResponse,
     summary="Get Normal Job Role Suggestions",
     description=(
         "For a given raw job title, this service performs semantic matching "
@@ -25,29 +30,105 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
     ),
     tags=["job"],
 )
-async def get_suggestions(
+async def get_job_title_embedding_match(
     q: str = Query(..., description="Raw job title"),
     limit: int = Query(
-        default=JobRoleSuggestionRequest.model_fields["limit"].default,
+        default=JobTitleEmbeddingMatchRequest.model_fields["limit"].default,
         description="Number of suggested job roles",
     ),
-    threshold: float = Query(
-        default=JobRoleSuggestionRequest.model_fields["threshold"].default,
+    embedding_score_threshold: float = Query(
+        default=JobTitleEmbeddingMatchRequest.model_fields["embedding_score_threshold"].default,
         description="Minimum similarity score (0 to 1)",
     ),
 ):
-    # Embed the query
+
+    # Query DB for similar titles
+    matches = job_title_embedding_match(
+        JobTitleEmbeddingMatchRequest(
+            q=q,
+            limit=limit,
+            embedding_score_threshold=embedding_score_threshold
+        )
+    )
+
+    return JobTitleEmbeddingMatchResponse(matches=matches)
+
+@router.get(
+    "/match/embedding_fuzzy",
+    summary="Get Job Role Suggestions (Embedding + Fuzzy Match)",
+    description=(
+        "Combines semantic similarity (pgvector) and fuzzy text match (pg_trgm) "
+        "with configurable weights for scoring."
+    ),
+    tags=["job"],
+)
+async def get_job_title_embedding_fuzzy_match(
+    q: str = Query(..., description="Raw job title"),
+    limit: int = Query(default=JobTitleEmbeddingFuzzyMatchRequest.model_fields["limit"].default, description="Number of suggestions"),
+    embedding_score_threshold: float = Query(
+        default=JobTitleEmbeddingMatchRequest.model_fields["embedding_score_threshold"].default,
+        description="Minimum similarity score (0 to 1)",
+    ),
+    embedding_score_weight: float = Query(default=JobTitleEmbeddingFuzzyMatchRequest.model_fields["embedding_score_weight"].default, ge=0.0, le=1.0, description="Weight for embedding score"),
+    fuzzy_score_weight: float = Query(default=JobTitleEmbeddingFuzzyMatchRequest.model_fields["fuzzy_score_weight"].default, ge=0.0, le=1.0, description="Weight for fuzzy match score"),
+):
+    # Normalize weights to sum to 1
+    total = embedding_score_weight + fuzzy_score_weight
+    if total == 0:
+        embedding_score_weight, fuzzy_score_weight = 0.7, 0.3  # fallback
+    else:
+        embedding_score_weight /= total
+        fuzzy_score_weight /= total
+
+    # Get combined scores from DB
+    matches = job_title_embedding_fuzzy_match(
+        JobTitleEmbeddingFuzzyMatchRequest(
+            q=q,
+            limit=limit,
+            embedding_score_threshold=embedding_score_threshold,
+            embedding_score_weight=embedding_score_weight,
+            fuzzy_score_weight=fuzzy_score_weight
+        )
+    )
+
+    # Return results in a structured response
+    return JobTitleEmbeddingFuzzyMatchResponse(
+            matches=matches
+    )
+
+@router.get(
+    "/match/cascade",
+    summary="Hybrid Search (Exact + Fuzzy + HNSW Embedding)",
+    description="Efficient multi-step ranking using Postgres indexes for both fuzzy and embedding.",
+    tags=["job"],
+)
+async def get_job_title_cascade_match(
+    q: str = Query(...),
+    limit: int = Query(10),
+    embedding_score_threshold: float = Query(
+        default=JobTitleEmbeddingMatchRequest.model_fields["embedding_score_threshold"].default,
+        description="Minimum similarity score (0 to 1)",
+    ),
+    embedding_score_weight: float = Query(default=JobTitleCascadeMatchRequest.model_fields["embedding_score_weight"].default, ge=0.0, le=1.0, description="Weight for embedding score"),
+    fuzzy_score_weight: float = Query(default=JobTitleCascadeMatchRequest.model_fields["fuzzy_score_weight"].default, ge=0.0, le=1.0, description="Weight for fuzzy match score"),
+    fuzzy_candidates: int = Query(default=JobTitleCascadeMatchRequest.model_fields["fuzzy_candidates"].default, description="Weight for fuzzy match score"),
+):
+    # Normalize embedding
     query_embedding = model.encode(q)
     query_embedding = (query_embedding / np.linalg.norm(query_embedding)).tolist()
 
-    # Query DB for similar titles
-    results = query_similar_titles(query_embedding, top_k=limit)
+    # Run hybrid query
+    matches = job_title_cascade_match(
+        JobTitleCascadeMatchRequest(
+            q=q,
+            limit=limit,
+            embedding_score_threshold=embedding_score_threshold,
+            embedding_score_weight=embedding_score_weight,
+            fuzzy_score_weight=fuzzy_score_weight,
+            fuzzy_candidates=fuzzy_candidates
+        )
+    )
 
-    # Filter by threshold and format results
-    suggestions = [
-        JobRoleSuggestion(id=row["uuid"], name=row["title"], score=row["score"])
-        for row in results
-        if (row["score"]) >= threshold
-    ]
-
-    return JobRoleSuggestionsResponse(suggestions=suggestions)
+    return JobTitleCascadeMatchResponse(
+        matches=matches
+    )

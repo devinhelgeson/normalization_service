@@ -1,0 +1,118 @@
+Database Migrations (Alembic)
+This project uses Alembic to manage database schema migrations.
+
+✅ Why Alembic?
+Tracks schema changes with versioned migrations.
+
+Allows upgrade and downgrade between versions.
+
+Handles complex operations (extensions, indexes, etc.) cleanly.
+
+Industry-standard for Python + SQLAlchemy/SQLModel projects.
+
+📂 Structure
+bash
+Copy
+Edit
+db/
+  ├── alembic.ini          # Alembic config
+  ├── env.py               # Migration environment setup
+  ├── versions/            # Migration scripts
+  └── README.md            # This guide
+✅ Environment Setup
+Install dependencies:
+
+bash
+Copy
+Edit
+poetry add alembic sqlmodel pgvector psycopg2-binary
+Make sure your .env contains:
+
+bash
+Copy
+Edit
+DATABASE_URL=postgresql://user:password@localhost:5432/yourdb
+✅ Basic Commands
+Create a new migration
+bash
+Copy
+Edit
+alembic revision -m "your message"
+Example:
+
+bash
+Copy
+Edit
+alembic revision --autogenerate -m "add new column to job_titles"
+Apply migrations
+Upgrade to latest version:
+
+bash
+Copy
+Edit
+alembic upgrade head
+Rollback (downgrade):
+
+bash
+Copy
+Edit
+alembic downgrade -1
+Check current DB state
+bash
+Copy
+Edit
+alembic current
+Show history:
+
+bash
+Copy
+Edit
+alembic history
+✅ Adding a New Column Example
+Update app/db_models.py:
+
+python
+Copy
+Edit
+class JobTitle(SQLModel, table=True):
+    # existing fields...
+    code: Optional[str] = Field(default=None)
+Generate migration:
+
+bash
+Copy
+Edit
+alembic revision --autogenerate -m "add code column to job_titles"
+Review and apply migration:
+
+bash
+Copy
+Edit
+alembic upgrade head
+✅ Special Cases: pgvector & HNSW Index
+Alembic does not auto-generate:
+
+CREATE EXTENSION vector
+
+Custom HNSW indexes
+
+We handle this manually in migration scripts:
+
+python
+Copy
+Edit
+op.execute("CREATE EXTENSION IF NOT EXISTS vector")
+op.execute("""
+    CREATE INDEX IF NOT EXISTS job_titles_embedding_hnsw_idx
+    ON job_titles
+    USING hnsw (embedding vector_cosine_ops)
+    WITH (m = 16, ef_construction = 64)
+""")
+✅ Pro Tip
+For reusable patterns, see db/custom_operations.py for helper functions like:
+
+python
+Copy
+Edit
+op.create_pgvector_extension()
+op.create_hnsw_index("job_titles", "embedding")
