@@ -5,16 +5,15 @@ from typing import List
 from concurrent.futures import ThreadPoolExecutor
 
 from tqdm import tqdm
-
 from pydantic import ValidationError
 from sentence_transformers import SentenceTransformer
 
-from app.db import insert_job_title
-
+from app.job_title_match import insert_job_title
 from app.data_models import RawOccupationRecord
+from app.db_models import JobTitleType  # enum for ONET_ROLE, ALT_TITLE
 
 DATA_PATH = Path("raw_data/All_Occupations.csv")
-EMBED_PARALLEL = True  # Set False to embed sequentially for debuging etc.
+EMBED_PARALLEL = True  # Set False for debugging
 
 
 def load_valid_titles() -> List[RawOccupationRecord]:
@@ -54,7 +53,7 @@ def embed_titles(records: List[RawOccupationRecord], model) -> List[tuple]:
 def ingest():
     print("Loading records...")
     records = load_valid_titles()
-    print(f"Loaded {len(records)} valid job titles.")
+    print(f"Loaded {len(records)} valid ONET job titles.")
 
     print("Embedding...")
     model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -62,7 +61,14 @@ def ingest():
 
     print("Inserting into DB...")
     for record, embedding in tqdm(record_embeddings, desc="Inserting job titles"):
-        insert_job_title(title=record.title, embedding=embedding)
+        insert_job_title(
+            title=record.title,
+            embedding=embedding,
+            type_="onet_role",
+            onet_code=record.code,
+        )
+
+    print("Ingestion complete")
 
 
 if __name__ == "__main__":

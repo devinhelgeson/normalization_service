@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field, field_validator
 
 # JobTitleEmbeddingMatch
 
+
 class JobTitleEmbeddingMatchRequest(BaseModel):
     q: str
     limit: Optional[int] = Field(
@@ -16,15 +17,19 @@ class JobTitleEmbeddingMatchRequest(BaseModel):
         description="Similarity score threshold. Between 0 and 1.",
     )
 
+
 class JobTitleEmbeddingMatch(BaseModel):
     id: uuid.UUID
     name: str
     embedding_score: float
 
+
 class JobTitleEmbeddingMatchResponse(BaseModel):
     matches: list[JobTitleEmbeddingMatch]
 
+
 # JobTitleEmbeddingFuzzyMatch
+
 
 class JobTitleEmbeddingFuzzyMatchRequest(JobTitleEmbeddingMatchRequest):
     embedding_score_weight: Optional[float] = Field(
@@ -40,25 +45,62 @@ class JobTitleEmbeddingFuzzyMatchRequest(JobTitleEmbeddingMatchRequest):
         description="Similarity score threshold. Between 0 and 1.",
     )
 
+
 class JobTitleEmbeddingFuzzyMatch(JobTitleEmbeddingMatch):
     fuzzy_score: float
     final_score: float
 
+
 class JobTitleEmbeddingFuzzyMatchResponse(BaseModel):
     matches: List[JobTitleEmbeddingFuzzyMatch]
 
+
 # JobTitleCascadeMatch
+
 
 class JobTitleCascadeMatchRequest(JobTitleEmbeddingFuzzyMatchRequest):
     fuzzy_candidates: Optional[int] = Field(
         default=100, description="The number of initial fuzzy match search results"
     )
 
+
 class JobTitleCascadeMatch(JobTitleEmbeddingFuzzyMatch):
     pass
 
+
 class JobTitleCascadeMatchResponse(JobTitleEmbeddingFuzzyMatchResponse):
     matches: List[JobTitleCascadeMatch]
+
+
+# KGMatch
+
+
+class JobTitleKGMatchRequest(BaseModel):
+    q: str
+    limit: Optional[int] = Field(default=10, description="Number of results to return")
+    embedding_score_threshold: Optional[float] = Field(
+        default=0.7,
+        ge=0.0,
+        le=1.0,
+        description="Minimum embedding similarity to include a candidate",
+    )
+
+
+class JobTitleKGMatchVariant(BaseModel):
+    id: uuid.UUID
+    name: str
+    type: str
+    embedding_score: Optional[float] = None  # <-- allow None
+
+
+class JobTitleKGMatch(BaseModel):
+    canonical_onet_title: str
+    variants: list[JobTitleKGMatchVariant]
+
+
+class JobTitleKGMatchResponse(BaseModel):
+    matches: list[JobTitleKGMatch]
+
 
 # Ingestion Validation
 class RawOccupationRecord(BaseModel):
@@ -76,6 +118,11 @@ class RawOccupationRecord(BaseModel):
 
     def is_valid(self) -> bool:
         return self.data_level == "Y" and self.job_zone is not None
+
+
+class RawAltTitleRecord(BaseModel):
+    onet_code: str = Field(..., alias="O*NET-SOC Code")
+    alt_title: str = Field(..., alias="Alternate Title")
 
 
 # class JobTitle(BaseModel):

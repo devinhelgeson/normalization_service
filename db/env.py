@@ -21,6 +21,7 @@ config.set_main_option("sqlalchemy.url", DB_URL)
 
 # Import models and set target metadata
 from app.db_models import JobTitle
+
 target_metadata = SQLModel.metadata
 
 
@@ -38,7 +39,7 @@ def run_migrations_offline():
         target_metadata=target_metadata,
         literal_binds=True,
         compare_type=False,
-        include_object=include_object
+        include_object=include_object,
     )
 
     with context.begin_transaction():
@@ -50,7 +51,7 @@ def run_migrations_online():
     connectable = engine_from_config(
         config.get_section(config.config_ini_section),
         prefix="sqlalchemy.",
-        poolclass=pool.NullPool
+        poolclass=pool.NullPool,
     )
 
     with connectable.connect() as connection:
@@ -58,7 +59,7 @@ def run_migrations_online():
             connection=connection,
             target_metadata=target_metadata,
             compare_type=False,
-            include_object=include_object
+            include_object=include_object,
         )
 
         with context.begin_transaction():
